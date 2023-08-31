@@ -52,7 +52,7 @@ public class NewsService {
 	// Do not change the method name and the return type
 	// You may add any number of parameters
 	// Returns a list of news
-	public List<News> getNewsByTag(TagCount name) {
+	public List<News> getNewsByTag(String tagName) {
 		return new LinkedList<News>();
 	}
 

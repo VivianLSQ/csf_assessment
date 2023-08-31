@@ -112,7 +112,7 @@ public class NewsController {
 
 	// TO-DO: Task 3
 	@GetMapping(path="/details", produces = MediaType.APPLICATION_JSON_VALUE)
-	 public ResponseEntity<Document> getArticlesByHashtag(@PathVariable String tagName) {
+	 public ResponseEntity<List<News>> getArticlesByHashtag(@PathVariable String tagName) {
         return ResponseEntity.ok(service.getNewsByTag(tagName));
     }
 }
