@@ -105,14 +105,14 @@ public class NewsController {
 
 	// TO-DO: Task 2
 	@GetMapping(path="/display", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> getTop10Hashtags(TagCount count){
-		List<News> getTop10Hashtag = new LinkedList<>(); 
-	return ResponseEntity.ok(service.getTop10Hashtag(count).toString());
+	public ResponseEntity<String> getTags(TagCount count){
+		List<News> getTags = new LinkedList<>(); 
+	return ResponseEntity.ok(service.getTags(count).toString());
 	}
 
 	// TO-DO: Task 3
 	@GetMapping(path="/details", produces = MediaType.APPLICATION_JSON_VALUE)
 	 public ResponseEntity<Document> getArticlesByHashtag(@PathVariable String tagName) {
-        return ResponseEntity.ok(service.getArticlesByHashtag(tagName));
+        return ResponseEntity.ok(service.getNewsByTag(tagName));
     }
 }

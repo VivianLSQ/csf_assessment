@@ -56,12 +56,6 @@ public class NewsService {
 		return new LinkedList<News>();
 	}
 
-    public Object getTop10Hashtag(TagCount count) {
-        return null;
-    }
-
-    public Object getArticlesByHashtag(String tagName) {
-        return null;
-    }
+ 
 	
 }

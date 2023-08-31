@@ -69,6 +69,7 @@ public class NewsRepository {
 		])
 	  */
 
+
 	public List<TagCount> getTop10NewsTags(){
 		ProjectionOperation projectTagSummary= Aggregation.project("name", "count");
 
@@ -89,6 +90,6 @@ public class NewsRepository {
 
 	// TO-DO: Task 3
 	// Write the native Mongo query in the comment above the method
-
+	
 
 }
