@@ -10,6 +10,7 @@ import { DisplayComponent } from './components/display.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ArticleService } from './article.service';
 import { DetailsComponent } from './components/details.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { DetailsComponent } from './components/details.component';
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RouterModule
   ],
   providers: [ArticleService],
   bootstrap: [AppComponent]

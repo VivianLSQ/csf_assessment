@@ -3,6 +3,8 @@ package vttp2023.batch3.csf.assessment.cnserver.controllers;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,20 +27,29 @@ import org.springframework.web.servlet.ModelAndView;
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
+import vttp2023.batch3.csf.assessment.cnserver.config.S3Config;
 import vttp2023.batch3.csf.assessment.cnserver.models.News;
 import vttp2023.batch3.csf.assessment.cnserver.models.TagCount;
 import vttp2023.batch3.csf.assessment.cnserver.repositories.ImageRepository;
 import vttp2023.batch3.csf.assessment.cnserver.services.NewsService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/api")
+//@CrossOrigin(origins = "http://localhost:4200")
 public class NewsController {
 
 	@Autowired
-	ImageRepository imgRepo; 
-	NewsService service; 
+	private ImageRepository imgRepo; 
+	private NewsService service; 
+	private S3Config config; 
 
-	// TODO: Task 1
+	// TO-DO: Task 1
+
+	// public String getPostDate(){
+	// 	Calendar cal = new GregorianCalendar(); 
+	// 	cal.set(Calendar.DAY_OF_MONTH, 10);
+	// }
+
 	@PostMapping(path="/post", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String>createNewArticle(@RequestBody String payload){
 		//Request Body is JsonDoc from FrontEnd
@@ -54,15 +66,16 @@ public class NewsController {
 
 	}
 
-	@PostMapping(path="/uploadPhoto", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	//Upload Photo
+	@PostMapping(path="/post", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ModelAndView postUpload(@RequestPart String description
 			, @RequestPart MultipartFile myfile) {
 
 		ModelAndView mav = new ModelAndView();
 
 		try {
-			// String mediaType = myfile.getContentType();
-			// InputStream is = myfile.getInputStream();
+			String mediaType = myfile.getContentType();
+			InputStream is = myfile.getInputStream();
 
 			//imgRepo.upload(description, mediaType, is);
 			String id = imgRepo.saveImage(myfile);
@@ -85,13 +98,13 @@ public class NewsController {
 	}
 
 
-	// TODO: Task 2
+	// TO-DO: Task 2
 	@GetMapping(path="/search")
 	public List<News> getTop10Hashtags(TagCount count){
 		List<News> getTop10Hashtag = new LinkedList<>(); 
 	return List<News>();
 	}
 
-	// TODO: Task 3
+	// TO-DO: Task 3
 
 }

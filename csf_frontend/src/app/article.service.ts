@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { ElementRef, Injectable } from '@angular/core';
-import { firstValueFrom } from 'rxjs';
+import { Observable, firstValueFrom } from 'rxjs';
 import { Article, Tag } from './models';
 
 @Injectable({
@@ -8,10 +8,12 @@ import { Article, Tag } from './models';
 })
 export class ArticleService {
 
+  readonly: apiURL = '/api/post'
+
   constructor(private http: HttpClient) { }
 
-  createArticle(article: Article){
-
+  createArticle(article: Article): Observable <any>{
+    return this.http.post(this.apiURL, article)
   }
 
   createTag(tag: Tag){

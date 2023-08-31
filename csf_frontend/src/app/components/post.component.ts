@@ -36,7 +36,6 @@ export class PostComponent implements OnInit {
       //postDate: this.fb.control<string>(''),
       title: this.fb.control<string>('', [Validators.required, Validators.minLength(5)]),
       photo: this.fb.control<string>( '', [Validators.required]),
-        //to include "Choose File" button later
       description: this.fb.control<string>('', [Validators.required, Validators.minLength(5)]),
       tags: this.fb.control<string []>([])
     })

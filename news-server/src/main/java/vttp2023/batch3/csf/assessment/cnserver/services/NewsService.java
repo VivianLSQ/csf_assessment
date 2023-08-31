@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
-import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
 import vttp2023.batch3.csf.assessment.cnserver.models.News;
 import vttp2023.batch3.csf.assessment.cnserver.models.TagCount;
@@ -20,10 +19,11 @@ public class NewsService {
 	@Autowired
 	private NewsRepository newsRepo; 
 	
-	// TODO: Task 1
+	// TO-DO: Task 1
 	// Do not change the method name and the return type
 	// You may add any number of parameters
 	// Returns the news id
+
 	public String postNews(JsonObject newsJson) {
 		String newsId = UUID.randomUUID().toString().substring(0, 8);
 
@@ -39,7 +39,7 @@ public class NewsService {
         return newsId;
 	}
 	 
-	// TODO: Task 2
+	// TO-DO: Task 2
 	// Do not change the method name and the return type
 	// You may add any number of parameters
 	// Returns a list of tags and their associated count
@@ -47,7 +47,7 @@ public class NewsService {
 		return new LinkedList<>();
 	}
 
-	// TODO: Task 3
+	// TO-DO: Task 3
 	// Do not change the method name and the return type
 	// You may add any number of parameters
 	// Returns a list of news

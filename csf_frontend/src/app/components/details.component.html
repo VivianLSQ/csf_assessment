@@ -1,1 +1,29 @@
-<p>details works!</p>
+<h1> List of News with {{hashtagName}}</h1>
+
+<span><button type="button" [routerLink]="['/main']">Back</button></span>
+<span><button type="button" [routerLink]="['/post']">Post News</button></span>
+
+
+<table>
+    <thead>
+      <tr>
+        <td>News Id</td>
+        <td>News Title</td>
+        <td>Publish Date and Time</td>
+        <td>News Image</td>
+        <td>Description</td>
+        <td> Related Hashtags </td>
+      </tr>
+    </thead>
+    <tbody style="text-align: center;">
+      <tr *ngFor="let item of news">
+        <td>{{ item.newsId}}</td>
+        <td>{{ item.title }}</td>
+        <td>{{ item.date }}</td>
+        <td>{{ item.image }}</td>
+        <td>{{ item.description }}</td>
+        <td>{{ item.hashtags }}</td>
+      </tr>
+    </tbody>
+
+</table>

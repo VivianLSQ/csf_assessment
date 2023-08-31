@@ -18,7 +18,7 @@ import com.amazonaws.services.s3.model.PutObjectResult;
 @Repository
 public class ImageRepository {
 	
-	// TODO: Task 1
+	// TO-DO: Task 1
 	@Autowired 
 	private AmazonS3 s3;
 	
