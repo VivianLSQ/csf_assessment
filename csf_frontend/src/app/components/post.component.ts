@@ -74,6 +74,9 @@ export class PostComponent implements OnInit {
   }
 
 
+  checkIfValid(): boolean {
+    return this.form.invalid;
+  }
 
 }
 

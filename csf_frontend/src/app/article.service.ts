@@ -8,7 +8,10 @@ import { Article, Tag } from './models';
 })
 export class ArticleService {
 
-  readonly: apiURL = '/api/post'
+  apiURL:string = '/api/post'
+  apiURLForAllNews: string ='/api/details'
+  apiURLTags: string = '/api/display'
+  apiURLMain: string = '/api/main'
 
   constructor(private http: HttpClient) { }
 
@@ -16,12 +19,15 @@ export class ArticleService {
     return this.http.post(this.apiURL, article)
   }
 
-  createTag(tag: Tag){
+  getAllNewsOfTag(): Observable<any> {
+    return this.http.get(this.apiURLForAllNews);
+  }
 
+  createTag(tag: Tag){
   }
 
   showTopTags(tag: Tag){
-
+    return this.http.get(this.apiURLTags);
   }
 
   //To upload image

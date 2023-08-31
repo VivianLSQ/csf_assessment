@@ -1,6 +1,6 @@
 
 export interface Article{
-  postDate: string; 
+  postDate: string;
   title: string;
   photo: Blob;
   description: string;
@@ -10,5 +10,5 @@ export interface Article{
 
 export interface Tag{
   name: string;
-  count: string;
+  count: number;
 }

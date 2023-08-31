@@ -20,6 +20,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import vttp2023.batch3.csf.assessment.cnserver.models.News;
+import vttp2023.batch3.csf.assessment.cnserver.models.TagCount;
 
 @Repository
 public class NewsRepository {
@@ -55,14 +56,42 @@ public class NewsRepository {
 	.limit(10);
 	 */
 
-	public List<News> getTop10NewsTags(){
-		List<News> top10News = new LinkedList<>(); 
+	 /*
+	  db.news.aggregate(
+		[	{
+				$project: { 
+					name: 1, 
+					count: 1
+				}
+			},
+			{
+				$sort: { count: -1 }
+				$sort: { name: 1 }
+			},
+			{
+				$limit: 10
+			}
+		])
+	  */
+
+	public List<TagCount> getTop10NewsTags(){
+		return mongoTemplate.aggregate(
+			newAggregation(
+				Tags.class,
+				sortByCount("tags"),
+				limit(10),
+				project("_id", "count")
+				
+			),
+			TagCount.class
+		);
+	}
 		
 
 		SortOperation sortByTagCount= Aggregation.sort(
 		Sort.by(Direction.DESC, “tag_count”));
 
-		LimitOperation getTop10Only = Aggregation.limit(); 
+		LimitOperation getTop10Only = Aggregation.limit(longLimit); 
 
 		Aggregation pipeline= Aggregation.newAggregation(sortByTagCount);
 
