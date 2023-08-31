@@ -14,7 +14,9 @@ public class News {
 	private String image;
 	private List<String> tags;
 
-	public void setId(String id) { this.id = id; }
+	public News(String newsId, String string, String string2, String string3, String string4) {
+    }
+    public void setId(String id) { this.id = id; }
 	public String getId() { return this.id; }
 
 	public void setPostDate(long postDate) { this.postDate = postDate; }

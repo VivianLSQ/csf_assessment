@@ -1,0 +1,13 @@
+<h2>Top Tags: <code>{{ query }}</code></h2>
+
+<div *ngIf="searchResults.length > 0; else noTags">
+  <ul>
+    <li *ngFor="let item of searchResults"><a routerLink="/details/{{item.id}}">{{ item.name }}</a></li>
+  </ul>
+</div>
+
+<ng-template #noTags>
+  <p>No news hashtag found within the last __ minutes</p>
+</ng-template>
+
+

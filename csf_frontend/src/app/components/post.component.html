@@ -1,0 +1,39 @@
+<h2>Share A Piece of News</h2>>
+
+<form [formGroup]="form"  (submit)="postNews()">
+
+
+  <table>
+    <tr>
+      <td>Title: </td>
+      <td><input type="text" formControlName="title"></td>
+    </tr>
+    <tr>
+
+
+      <td>Photo: </td>
+      <td><input type="file" formControlName="photo" #upload></td>
+    </tr>
+
+    <tr>
+      <td>Description: </td>
+      <td><textarea formControlName="description"></textarea></td>
+    </tr>
+
+    <tr>
+      <td>Tags: </td>
+      <ul>
+        <li *ngFor="let tag of allTags; let tagIdx = index" {{tag}}>
+        </li>
+      </ul>
+      <input type="text" formControlName="tag" [(ngModel)]="newTag">
+      <span> <button type="button" (click)="addTag()">+</button></span>
+      <br>
+      <button type="button" (click)="deleteTag(tagIdx)">-</button>
+    </tr>
+
+
+    <td><button type="submit" [disabled]="form.invalid">Post News</button></td>
+
+</table>
+</form>
