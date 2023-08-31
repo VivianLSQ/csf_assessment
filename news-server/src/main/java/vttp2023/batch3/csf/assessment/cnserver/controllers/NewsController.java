@@ -8,13 +8,14 @@ import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
 
-
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,7 +41,11 @@ public class NewsController {
 
 	@Autowired
 	private ImageRepository imgRepo; 
+
+	@Autowired
 	private NewsService service; 
+
+	@Autowired
 	private S3Config config; 
 
 	// TO-DO: Task 1
@@ -99,12 +104,15 @@ public class NewsController {
 
 
 	// TO-DO: Task 2
-	@GetMapping(path="/search")
-	public List<News> getTop10Hashtags(TagCount count){
+	@GetMapping(path="/display", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<String> getTop10Hashtags(TagCount count){
 		List<News> getTop10Hashtag = new LinkedList<>(); 
-	return List<News>();
+	return ResponseEntity.ok(service.getTop10Hashtag(count).toString());
 	}
 
 	// TO-DO: Task 3
-
+	@GetMapping(path="/details", produces = MediaType.APPLICATION_JSON_VALUE)
+	 public ResponseEntity<Document> getArticlesByHashtag(@PathVariable String tagName) {
+        return ResponseEntity.ok(service.getArticlesByHashtag(tagName));
+    }
 }

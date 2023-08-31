@@ -21,6 +21,7 @@ import org.springframework.stereotype.Repository;
 
 import vttp2023.batch3.csf.assessment.cnserver.models.News;
 import vttp2023.batch3.csf.assessment.cnserver.models.TagCount;
+import vttp2023.batch3.csf.assessment.cnserver.models.Tags;
 
 @Repository
 public class NewsRepository {
@@ -50,12 +51,6 @@ public class NewsRepository {
 	// TO-DO: Task 2 
 	// Write the native Mongo query in the comment above the method
 	
-	/*
-	 db.news.find()
-	.sort({s:1, _id:-1})
-	.limit(10);
-	 */
-
 	 /*
 	  db.news.aggregate(
 		[	{
@@ -75,25 +70,17 @@ public class NewsRepository {
 	  */
 
 	public List<TagCount> getTop10NewsTags(){
-		return mongoTemplate.aggregate(
-			newAggregation(
-				Tags.class,
-				sortByCount("tags"),
-				limit(10),
-				project("_id", "count")
-				
-			),
-			TagCount.class
-		);
-	}
-		
+		ProjectionOperation projectTagSummary= Aggregation.project("name", "count");
 
 		SortOperation sortByTagCount= Aggregation.sort(
-		Sort.by(Direction.DESC, “tag_count”));
+			Sort.by(Direction.DESC, “count”));
+
+		SortOperation sortByTagName= Aggregation.sort(
+			Sort.by(Direction.ASC, “name”));
 
 		LimitOperation getTop10Only = Aggregation.limit(longLimit); 
 
-		Aggregation pipeline= Aggregation.newAggregation(sortByTagCount);
+		Aggregation pipeline= Aggregation.newAggregation(projectTagSummary, sortByTagCount);
 
 		AggregationResults<Document> results= mongoTemplate.aggregate(
 		pipeline, “news”, Document.class);

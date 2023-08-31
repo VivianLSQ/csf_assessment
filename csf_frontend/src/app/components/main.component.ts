@@ -17,13 +17,13 @@ export class MainComponent{
 
   constructor(private router: Router){}
 
-  // @ViewChild('showTopTags')
-  // query!: ElementRef;
+  @ViewChild('showTopTags')
+  query!: ElementRef;
 
-  // showTopTags(){
-  //   const displayQuery = this.query.nativeElement.value;
-  //   this.router.navigate(['/display/', displayQuery])
-  // }
+  showTopTags(){
+    const displayQuery = this.query.nativeElement.value;
+    this.router.navigate(['/display/', displayQuery])
+  }
 
 
 }

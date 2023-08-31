@@ -43,7 +43,8 @@ public class NewsService {
 	// Do not change the method name and the return type
 	// You may add any number of parameters
 	// Returns a list of tags and their associated count
-	public List<TagCount> getTags(/* Any number of parameters */) {
+	public List<TagCount> getTags(TagCount count) {
+		
 		return new LinkedList<>();
 	}
 
@@ -51,8 +52,16 @@ public class NewsService {
 	// Do not change the method name and the return type
 	// You may add any number of parameters
 	// Returns a list of news
-	public List<News> getNewsByTag(/* Any number of parameters */) {
-		return new LinkedList<>();
+	public List<News> getNewsByTag(TagCount name) {
+		return new LinkedList<News>();
 	}
+
+    public Object getTop10Hashtag(TagCount count) {
+        return null;
+    }
+
+    public Object getArticlesByHashtag(String tagName) {
+        return null;
+    }
 	
 }
