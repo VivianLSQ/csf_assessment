@@ -78,7 +78,7 @@ public class NewsRepository {
 		SortOperation sortByTagName= Aggregation.sort(
 			Sort.by(Direction.ASC, “name”));
 
-		LimitOperation getTop10Only = Aggregation.limit(longLimit); 
+		LimitOperation getTop10Only = Aggregation.limit(10); 
 
 		Aggregation pipeline= Aggregation.newAggregation(projectTagSummary, sortByTagCount);
 
